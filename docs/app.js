@@ -60,11 +60,11 @@ const rebuttalSections = [
     title: "Reverse Examples",
     items: [
       {
-        source: `rebuttal/reverse-examples/000006_source.mp4`,
-        edit: `rebuttal/reverse-examples/000006_edit.mp4`,
-        reverse: `rebuttal/reverse-examples/000006_reverse.mp4`,
-        prompt: `Transform the video into a moody, cinematic close-up of a man smoking a cigar.`,
-        reversePrompt: `Transform the scene into a stark Black and White Manga artwork.`,
+        source: `rebuttal/reverse-examples/000093_source.mp4`,
+        edit: `rebuttal/reverse-examples/000093_edit.mp4`,
+        reverse: `rebuttal/reverse-examples/000093_reverse.mp4`,
+        prompt: `Transform the entire video into a Cubist painting, utilizing geometric fragmentation and interlocking faceted planes.`,
+        reversePrompt: `Transform the video into a photorealistic scene featuring a woman sitting by a calm lake with distant mountains.`,
         mediaAspect: "1280 / 704"
       }
     ]
