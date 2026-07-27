@@ -7,9 +7,6 @@
 The page contains pre-generated qualitative results and runs directly in the
 browser. No dataset, checkpoint, installation, or local HTTP server is required.
 
-> Anonymous code release for double-blind review. Every weight location in this
-> document is written as a local placeholder path (`/path/to/hf/model/...`).
-
 ## 📽️ About SANA-Streaming
 
 **SANA-Streaming** is a real-time video-to-video editing system for minute-level,
