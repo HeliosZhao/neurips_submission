@@ -34,6 +34,18 @@ const rebuttalSections = [
         edit: `rebuttal/reverse-examples/000046_edit.mp4`,
         prompt: `Place a small, dark glass bottle on the left armrest of the white leather chair.`,
         mediaAspect: "1280 / 704"
+      },
+      {
+        source: `rebuttal/failure-cases/000002_source.mp4`,
+        edit: `rebuttal/failure-cases/000002_edit.mp4`,
+        prompt: `Remove the floating glass vase with the single red flower hanging on the left side of the scene, allowing the out-of-focus green foliage to seamlessly fill the space behind it.`,
+        mediaAspect: "1280 / 704"
+      },
+      {
+        source: `rebuttal/failure-cases/000062_source.mp4`,
+        edit: `rebuttal/failure-cases/000062_edit.mp4`,
+        prompt: `Replace the silver wavy ring on the subject's index finger with a polished silver band featuring a prominent, square-cut green emerald.`,
+        mediaAspect: "1280 / 704"
       }
     ]
   },
@@ -65,6 +77,22 @@ const rebuttalSections = [
         reverse: `rebuttal/reverse-examples/000093_reverse.mp4`,
         prompt: `Transform the entire video into a Cubist painting, utilizing geometric fragmentation and interlocking faceted planes.`,
         reversePrompt: `Transform the video into a photorealistic scene featuring a woman sitting by a calm lake with distant mountains.`,
+        mediaAspect: "1280 / 704"
+      },
+      {
+        source: `rebuttal/reverse-examples/000220_source.mp4`,
+        edit: `rebuttal/reverse-examples/000220_edit.mp4`,
+        reverse: `rebuttal/reverse-examples/000220_reverse.mp4`,
+        prompt: `Transform the plain dark backdrop into a luxurious, dimly lit mahogany-paneled executive study.`,
+        reversePrompt: `Transform the luxurious mahogany-paneled executive study into a minimalist, plain dark backdrop.`,
+        mediaAspect: "1280 / 704"
+      },
+      {
+        source: `rebuttal/reverse-examples/000231_source.mp4`,
+        edit: `rebuttal/reverse-examples/000231_edit.mp4`,
+        reverse: `rebuttal/reverse-examples/000231_reverse.mp4`,
+        prompt: `Give the subject a thin silver chain necklace featuring a small, circular vintage coin pendant.`,
+        reversePrompt: `Transform the subject’s attire by replacing his current shirt with a plain white t-shirt, ensuring the fabric appears smooth and slightly fitted. Remove any visible necklace or pendant from his neck area, leaving the skin and shirt surface clean and unadorned.`,
         mediaAspect: "1280 / 704"
       }
     ]
