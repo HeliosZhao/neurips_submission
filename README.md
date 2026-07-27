@@ -1,5 +1,12 @@
 # SANA-Streaming: Real-time Streaming Video Editing with Hybrid Diffusion Transformer
 
+## 🎬 Video Demo
+
+**[▶ Open the browser-based video demo](https://anonymous.4open.science/w/neurips_submission_10192/)**
+
+The page contains pre-generated qualitative results and runs directly in the
+browser. No dataset, checkpoint, installation, or local HTTP server is required.
+
 > Anonymous code release for double-blind review. Every weight location in this
 > document is written as a local placeholder path (`/path/to/hf/model/...`).
 
@@ -24,24 +31,6 @@ Core contributions:
   1280×704 real-time editing at 24 end-to-end FPS and 58 DiT FPS.
 
 This repository is used for NeurIPS 2026 review, with all the training and inference code, but the model weights will be released to public later.
-
-## Relationship to SANA
-
-This anonymous review snapshot is built upon
-[SANA](https://github.com/NVlabs/Sana), a public open-source framework for
-efficient image and video generation. Existing upstream names and links in this
-repository refer to the public SANA framework and do not identify the authors
-of this anonymous submission.
-
-All SANA-Streaming-specific research code, configurations, documentation, and
-artifacts in this snapshot are anonymized for double-blind review.
-
-## 🎬 Video Demo
-
-**[▶ Open the browser-based video demo](https://anonymous.4open.science/w/neurips_submission_10192/)**
-
-The page contains pre-generated qualitative results and runs directly in the
-browser. No dataset, checkpoint, installation, or local HTTP server is required.
 
 ## ⚙️ Environment Setup
 
