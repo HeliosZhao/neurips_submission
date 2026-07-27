@@ -1,4 +1,4 @@
-# Copyright 2024 NVIDIA CORPORATION & AFFILIATES
+# Copyright (c) 2024 Anonymous Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -29,9 +29,9 @@ from diffusion.utils.config import SanaVideoConfig
 
 @dataclass
 class LongSANAVideoInference(SanaVideoConfig):
-    config: Optional[str] = "configs/sana_video_config/longsana/480ms/self_forcing.yaml"  # config
+    config: Optional[str] = "configs/sana_streaming/sana_streaming_2b_720p.yaml"  # config
     model_path: str = field(
-        default="hf://Efficient-Large-Model/LongSANA_2B_480p_self_forcing/checkpoints/LongSANA_2B_480p_self_forcing.pt",
+        default="/path/to/hf/model/checkpoints/long_video_self_forcing.pt",
         metadata={"help": "Path to the model file (positional)"},
     )
     prompt: Optional[str] = None
@@ -40,7 +40,7 @@ class LongSANAVideoInference(SanaVideoConfig):
     bs: int = 1
     num_inference_steps: int = 50
     image_size: int = 480
-    sampling_algo: str = "self_forcing_flow_euler"  # "flow_dpm-solver"
+    sampling_algo: str = "flow_dpm-solver"
     skip_type: str = "time_uniform_flow"  # time_uniform_flow, linear_quadratic
     cfg_scale: float = 1.0
     guidance_type: str = "classifier-free"

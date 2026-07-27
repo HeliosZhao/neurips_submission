@@ -278,8 +278,7 @@ class DMDSana(torch.nn.Module):
         self.real_score.model.requires_grad_(False)
 
         # sana config(generator)
-        # TODO: Need to make the path more robust.
-        sana_config_path = getattr(args, "sana_config", "sana/configs/Sana_2B_480p_self_forcing.yaml")
+        sana_config_path = getattr(args, "sana_config", "configs/sana_streaming/sana_streaming_2b_720p.yaml")
         print(f"init sana config (generator): {sana_config_path}")
         sana_cfg = (
             self._load_sana_config(sana_config_path)

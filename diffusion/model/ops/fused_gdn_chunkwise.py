@@ -1,4 +1,4 @@
-# Copyright 2024 NVIDIA CORPORATION & AFFILIATES
+# Copyright (c) 2024 Anonymous Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -1847,7 +1847,7 @@ def fused_bigdn_stateful_chunkwise(
 
 # ─────────────────────────────────────────────────────────────────────────────
 #  Camera-branch wrapper — numerator-only single-path delta-rule scan via
-#  chunkwise. Drop-in for `diffusion.model.ops.fused_cam_gdn.cam_scan_func`.
+#  chunkwise scan entry point.
 #
 #  Cam math expanded:
 #      state = state * g                               # apply decay

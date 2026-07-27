@@ -1,9 +1,9 @@
 v2v: true
 sana_config: configs/sana_streaming/sana_streaming_2b_720p.yaml
 sana_fake_config: configs/sana_streaming/sana_streaming_bidirectional_2b_720p.yaml
-generator_ckpt: checkpoints/sana_streaming/dit/sana_streaming_ar.pth
-fake_ckpt: checkpoints/sana_streaming_bidirectional/dit/sana_bidirectional_short.pth
-real_ckpt: checkpoints/sana_streaming_bidirectional/dit/sana_bidirectional_short.pth
+generator_ckpt: /path/to/hf/model/dit/sana_streaming_ar.pth
+fake_ckpt: /path/to/hf/model/dit/sana_bidirectional_short.pth
+real_ckpt: /path/to/hf/model/dit/sana_bidirectional_short.pth
 generator_fsdp_wrap_strategy: size
 real_score_fsdp_wrap_strategy: size
 fake_score_fsdp_wrap_strategy: size

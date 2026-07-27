@@ -1,4 +1,4 @@
-# Copyright 2024 NVIDIA CORPORATION & AFFILIATES
+# Copyright (c) 2024 Anonymous Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -46,20 +46,21 @@ from diffusion.utils.config import (
 from sana.tools import resolve_hf_path
 from tools.download import find_model
 
-BIDIRECTIONAL_REPO_ID = "Efficient-Large-Model/SANA-Streaming_bidirectional"
-STREAMING_REPO_ID = "Efficient-Large-Model/SANA-Streaming"
+# Root directory holding the released DiT checkpoints. Override with the
+# ``SANA_STREAMING_MODEL_ROOT`` environment variable or with ``--model_path``.
+MODEL_ROOT = os.environ.get("SANA_STREAMING_MODEL_ROOT", "/path/to/hf/model")
 
 DEFAULTS = {
     "bidirectional_short": {
         "config": "configs/sana_streaming/sana_streaming_bidirectional_2b_720p.yaml",
-        "model_path": f"hf://{BIDIRECTIONAL_REPO_ID}/dit/sana_bidirectional_short.pth",
+        "model_path": os.path.join(MODEL_ROOT, "dit/sana_bidirectional_short.pth"),
         "num_frames": 81,
         "step": 50,
         "cfg_scale": 6.0,
     },
     "long_streaming": {
         "config": "configs/sana_streaming/sana_streaming_2b_720p.yaml",
-        "model_path": f"hf://{STREAMING_REPO_ID}/dit/sana_streaming_ar.pth",
+        "model_path": os.path.join(MODEL_ROOT, "dit/sana_streaming_ar.pth"),
         "num_frames": 969,
         "step": 4,
         "cfg_scale": 1.0,

@@ -1,4 +1,4 @@
-# Copyright 2024 NVIDIA CORPORATION & AFFILIATES
+# Copyright (c) 2024 Anonymous Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -70,7 +70,7 @@ class SanaV2VVideoMSBlock(SanaVideoMSBlock):
     """Sana video block with V2V-only registry fallbacks.
 
     This keeps custom V2V attention/FFN names local to ``SanaMSVideoV2V``
-    instead of changing the base Sana-Video block used by other releases.
+    instead of changing the base video block.
     """
 
     def __init__(

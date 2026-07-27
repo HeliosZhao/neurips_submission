@@ -3,9 +3,9 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "sana"
+name = "sana-streaming"
 version = "0.2.0"
-description = "SANA"
+description = "SANA-Streaming"
 readme = "README.md"
 requires-python = ">=3.11"
 classifiers = [
@@ -25,9 +25,6 @@ dependencies = [
     "psutil",
     "ninja",
     "diffusers>=0.37.0",
-    "clip@git+https://github.com/openai/CLIP.git",
-    "gradio",
-    "image-reward",
     "ipdb",
     "mmcv==1.7.2",
     "omegaconf",
@@ -36,7 +33,6 @@ dependencies = [
     "patch_conv",
     "peft==0.18.0",
     "protobuf",
-    "pytorch-fid",
     "regex",
     "sentencepiece",
     "tensorboard",
@@ -51,7 +47,6 @@ dependencies = [
     "webdataset",
     "xformers==0.0.33.post2",
     "yapf",
-    "spaces",
     "matplotlib",
     "termcolor",
     "pyrallis",
@@ -61,19 +56,11 @@ dependencies = [
     "imageio[pyav,ffmpeg]",
     "qwen-vl-utils",
     "lmdb",
-    "absl-py",
-    "ml_collections",
-    "hpsv2",
-    "open_clip_torch",
     "flash-linear-attention>=0.4.2",
     "liger_kernel",
     "plyfile",
 ]
 
-
-[project.scripts]
-sana-run = "sana.cli.run:main"
-sana-upload = "sana.cli.upload2hf:main"
 
 [project.optional-dependencies]
 
@@ -96,7 +83,7 @@ line_length = 120
 known_third_party = ["wandb"]
 
 [tool.setuptools.packages.find]
-exclude = ["assets*", "benchmark*", "docs", "dist*", "playground*", "scripts*", "tests*", "data*", "output*"]
+exclude = ["project_page*", "dist*", "tests*", "data*", "output*", "results*"]
 
 [tool.wheel]
-exclude = ["assets*", "benchmark*", "docs", "dist*", "playground*", "scripts*", "tests*", "data*", "output*"]
+exclude = ["project_page*", "dist*", "tests*", "data*", "output*", "results*"]

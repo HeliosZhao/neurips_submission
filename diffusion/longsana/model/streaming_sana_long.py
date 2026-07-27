@@ -1,4 +1,4 @@
-# Copyright (c) 2025 NVIDIA CORPORATION & AFFILIATES
+# Copyright (c) 2025 Anonymous Authors
 #
 # Licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0).
 # You may not use this file except in compliance with the License.

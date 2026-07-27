@@ -1,4 +1,4 @@
-"""Fused-BiGDN Triton kernels used by SANA-WM GDN attention blocks.
+"""Fused-BiGDN Triton kernels used by the GDN attention blocks.
 
 Includes the unified forward kernel, backward kernels, RoPE/RMS helpers, and
 autograd wrappers used by the Triton GDN attention blocks.

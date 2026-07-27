@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # -----------------------------------------------------------------------------
-# SANA environment installer. Single source of truth for deps is
+# SANA-Streaming environment installer. Single source of truth for deps is
 # pyproject.toml; this script only handles things that can't live there:
 # conda env + Python 3.11 + CUDA toolkit, the cu128 torch wheels, and the
 # few packages that need special install flags (mmcv / flash-attn / Pi3).
 #
 # Usage:
-#   bash ./environment_setup.sh sana   # create a fresh conda env
+#   bash ./environment_setup.sh sana-streaming   # create a fresh conda env
 #   bash ./environment_setup.sh        # install into the active env
 #
 # Idempotent: re-running on an existing env will reconcile versions.
@@ -25,7 +25,7 @@ if [ -n "$CONDA_ENV" ]; then
     eval "$(conda shell.bash hook)"
 
     if conda env list | awk '{print $1}' | grep -qx "$CONDA_ENV"; then
-        echo "[sana] conda env '$CONDA_ENV' already exists; reusing it."
+        echo "[sana-streaming] conda env '$CONDA_ENV' already exists; reusing it."
     else
         # Python 3.11 required: triton 3.5's @triton.jit uses inspect.getsource
         # and regex-matches ``^def\s+\w+\s*\(``; on 3.10 the source returned for
@@ -40,7 +40,7 @@ if [ -n "$CONDA_ENV" ]; then
     # needs to match at build time.
     conda install -c nvidia cuda-toolkit=12.8 -y
 else
-    echo "[sana] Skipping conda env creation. Make sure the target env is activated."
+    echo "[sana-streaming] Skipping conda env creation. Make sure the target env is activated."
 fi
 
 # setuptools<80: mmcv 1.7.2's setup.py imports ``pkg_resources``, which
@@ -62,7 +62,7 @@ pip install --no-build-isolation mmcv==1.7.2
 # Editable install resolves everything else from pyproject.toml.
 pip install -e .
 
-# Pi3X (camera intrinsics from a single image, used by SANA-WM): --no-deps so
+# Pi3X (camera intrinsics from a single image): --no-deps so
 # it doesn't downgrade torch/numpy.
 pip install git+https://github.com/yyfz/Pi3.git --no-deps
 
@@ -70,18 +70,18 @@ pip install git+https://github.com/yyfz/Pi3.git --no-deps
 MAX_JOBS=${MAX_JOBS:-8} NVCC_THREADS=${NVCC_THREADS:-2} \
     pip install --no-build-isolation "flash-attn>=2.7.0"
 
-# NVIDIA Transformer Engine: enables fp8 / fp4 quantized SANA-WM streaming
+# Transformer Engine: enables fp8 / fp4 quantized streaming
 # inference (--stage1_precision / --refiner_precision). Built from source against
 # the env's CUDA toolkit; best-effort -- a build failure here does not abort the
 # install (bf16 inference works without it). Skip explicitly with SANA_SKIP_TE=1.
 if [ "${SANA_SKIP_TE:-0}" != "1" ]; then
-    echo "[sana] Installing Transformer Engine (fp8/fp4 inference); set SANA_SKIP_TE=1 to skip."
+    echo "[sana-streaming] Installing Transformer Engine (fp8/fp4 inference); set SANA_SKIP_TE=1 to skip."
     if ! MAX_JOBS=${MAX_JOBS:-8} NVCC_THREADS=${NVCC_THREADS:-2} \
         pip install --no-build-isolation "transformer_engine[pytorch]>=2.0"; then
-        echo "[sana] WARNING: Transformer Engine install failed; bf16 inference still works."
-        echo "[sana]          fp8/fp4 need it -- retry with: pip install --no-build-isolation 'transformer_engine[pytorch]>=2.0'"
+        echo "[sana-streaming] WARNING: Transformer Engine install failed; bf16 inference still works."
+        echo "[sana-streaming]          fp8/fp4 need it -- retry with: pip install --no-build-isolation 'transformer_engine[pytorch]>=2.0'"
     fi
 fi
 
 echo
-echo "[sana] Done. Activate with:  conda activate ${CONDA_ENV:-<your-env>}"
+echo "[sana-streaming] Done. Activate with:  conda activate ${CONDA_ENV:-<your-env>}"

@@ -17,7 +17,7 @@ model:
   image_size: 720
   mixed_precision: bf16
   fp32_attention: true
-  load_from: hf://Efficient-Large-Model/SANA-Streaming_bidirectional/dit/sana_bidirectional_short.pth
+  load_from: /path/to/hf/model/dit/sana_bidirectional_short.pth
   resume_from: null
   aspect_ratio_type: ASPECT_RATIO_VIDEO_720_MS_DIV32
   multi_scale: true
