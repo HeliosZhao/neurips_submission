@@ -8,7 +8,8 @@
 docs/superpowers/
 *.png
 *.mp4
-project_page/assets/media/**/*.mp4
+!docs/assets/media/**/*.mp4
+docs/assets/media/rebuttal_demo_videos/
 # *.json
 tmp*
 output*
@@ -209,4 +210,3 @@ _internal/
 # locally-symlinked weights
 pretrained_models/
 hf*/
-

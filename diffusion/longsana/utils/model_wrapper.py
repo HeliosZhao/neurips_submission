@@ -60,7 +60,6 @@ class SanaModelWrapper(torch.nn.Module):
         pred = noise - x0
         x_t = (1-sigma_t) * x0 + sigma_t * noise
         we have x0 = x_t - sigma_t * pred
-        see derivations https://chatgpt.com/share/67bf8589-3d04-8008-bc6e-4cf1a24e2d0e
         """
         # use higher precision for calculations
         original_dtype = flow_pred.dtype
