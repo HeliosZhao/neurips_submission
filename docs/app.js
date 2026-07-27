@@ -30,18 +30,6 @@ const rebuttalSections = [
         mediaAspect: "1280 / 704"
       },
       {
-        source: `rebuttal/reverse-examples/000046_source.mp4`,
-        edit: `rebuttal/reverse-examples/000046_edit.mp4`,
-        prompt: `Place a small, dark glass bottle on the left armrest of the white leather chair.`,
-        mediaAspect: "1280 / 704"
-      },
-      {
-        source: `rebuttal/failure-cases/000002_source.mp4`,
-        edit: `rebuttal/failure-cases/000002_edit.mp4`,
-        prompt: `Remove the floating glass vase with the single red flower hanging on the left side of the scene, allowing the out-of-focus green foliage to seamlessly fill the space behind it.`,
-        mediaAspect: "1280 / 704"
-      },
-      {
         source: `rebuttal/failure-cases/000062_source.mp4`,
         edit: `rebuttal/failure-cases/000062_edit.mp4`,
         prompt: `Replace the silver wavy ring on the subject's index finger with a polished silver band featuring a prominent, square-cut green emerald.`,
