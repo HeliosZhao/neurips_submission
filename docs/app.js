@@ -28,6 +28,12 @@ const rebuttalSections = [
         edit: `rebuttal/failure-cases/000183_edit.mp4`,
         prompt: `Replace the background with a gritty, dimly lit underground subway corridor at night.`,
         mediaAspect: "1280 / 704"
+      },
+      {
+        source: `rebuttal/reverse-examples/000046_source.mp4`,
+        edit: `rebuttal/reverse-examples/000046_edit.mp4`,
+        prompt: `Place a small, dark glass bottle on the left armrest of the white leather chair.`,
+        mediaAspect: "1280 / 704"
       }
     ]
   },
@@ -59,14 +65,6 @@ const rebuttalSections = [
         reverse: `rebuttal/reverse-examples/000006_reverse.mp4`,
         prompt: `Transform the video into a moody, cinematic close-up of a man smoking a cigar.`,
         reversePrompt: `Transform the scene into a stark Black and White Manga artwork.`,
-        mediaAspect: "1280 / 704"
-      },
-      {
-        source: `rebuttal/reverse-examples/000046_source.mp4`,
-        edit: `rebuttal/reverse-examples/000046_edit.mp4`,
-        reverse: `rebuttal/reverse-examples/000046_reverse.mp4`,
-        prompt: `Place a small, dark glass bottle on the left armrest of the white leather chair.`,
-        reversePrompt: `Remove the small, dark glass bottle resting on the left armrest of the white leather chair.`,
         mediaAspect: "1280 / 704"
       }
     ]
