@@ -4,9 +4,6 @@
 
 **[▶ Open the browser-based video demo](https://anonymous.4open.science/w/neurips_submission_10192/)**
 
-The page contains pre-generated qualitative results and runs directly in the
-browser. No dataset, checkpoint, installation, or local HTTP server is required.
-
 ## 📽️ About SANA-Streaming
 
 **SANA-Streaming** is a real-time video-to-video editing system for minute-level,
