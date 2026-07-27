@@ -38,12 +38,7 @@ artifacts in this snapshot are anonymized for double-blind review.
 
 ## 🎬 Video Demo
 
-<!--
-Before submission, publish this branch's /docs folder with GitHub Pages. In
-Anonymous GitHub, select the same branch, enable "Github page" and "Keep links",
-then replace ANON_ID below with the assigned identifier.
--->
-**[▶ Open the browser-based video demo](https://anonymous.4open.science/w/ANON_ID/)**
+**[▶ Open the browser-based video demo](https://anonymous.4open.science/w/neurips_submission_10192/)**
 
 The page contains pre-generated qualitative results and runs directly in the
 browser. No dataset, checkpoint, installation, or local HTTP server is required.

@@ -1,6 +1,10 @@
 const root = document.getElementById("app");
 
 const base = "./assets/media/";
+const useBlobVideoLoader =
+  window.location.hostname === "anonymous.4open.science" &&
+  window.location.pathname.startsWith("/w/");
+const videoBlobUrls = new Map();
 
 const rebuttalSections = [
   {
@@ -74,19 +78,19 @@ const minuteLengthGroups = [
     title: "Local Editing",
     items: [
       {
-        src: `ready-to-use/long-select/000026. Remove the thick, textured gold hoop earrings from8b7ce0e68f.mp4`,
+        src: `ready-to-use/long-select/000026.mp4`,
         prompt: `Remove the thick, textured gold hoop earrings from the woman's ears. Carefully reconstruct the exposed earlobes to match her natural skin tone and texture. Ensure the lighting and soft shadows on the newly bare ears blend seamlessly with the rest of her face, leaving no trace or reflection of the metallic jewelry behind.`
       },
       {
-        src: `ready-to-use/long-select/005356. Replace the subject's white button-up shirt with a24dfe94d60.mp4`,
+        src: `ready-to-use/long-select/005356.mp4`,
         prompt: `Replace the subject's white button-up shirt with a luxurious, dark navy blue silk blouse. The new garment should feature a soft, elegantly draped ruffled collar and a line of small, iridescent pearl buttons. Ensure the smooth silk material has a subtle sheen that realistically catches and reflects the warm, golden light coming from the background lamp throughout the sequence.`
       },
       {
-        src: `ready-to-use/long-select/005571. Replace the subject's white and red track jacket w4665d224b6.mp4`,
+        src: `ready-to-use/long-select/005571.mp4`,
         prompt: `Replace the subject's white and red track jacket with a vintage dark brown leather aviator jacket. The new garment should feature a thick, cream-colored shearling collar around the neck, rugged and slightly distressed leather texturing across the shoulders, and a heavy antique brass zipper detail along the front edge, all interacting naturally with the warm, golden ambient lighting.`
       },
       {
-        src: `ready-to-use/long-select/005632. Give the subject a pair of delicate, round gold-wi7b739cce30.mp4`,
+        src: `ready-to-use/long-select/005632.mp4`,
         prompt: `Give the subject a pair of delicate, round gold-wire eyeglasses. Ensure the thin metallic frames rest naturally on the bridge of his nose, with the clear lenses catching soft, realistic reflections from the ambient cinematic lighting, perfectly complementing his retro, preppy aesthetic without obscuring his tearful expression.`
       }
     ]
@@ -95,15 +99,15 @@ const minuteLengthGroups = [
     title: "Background Editing",
     items: [
       {
-        src: `ready-to-use/long-select/000049. Replace the solid black background with a sleek, c7285bb63b2.mp4`,
+        src: `ready-to-use/long-select/000049.mp4`,
         prompt: `Replace the solid black studio background with a clean, minimalist white-and-gray showroom interior. Add smooth light-gray paneled walls and a large rectangular overhead softbox that casts bright, diffused light across the space. Preserve the subject's pose, hand motion, white textured top, jewelry, skin tone, and shallow-depth-of-field cinematography while making the new geometric interior feel naturally integrated behind her.`
       },
       {
-        src: `ready-to-use/long-select/005810. Replace the background with a cinematic, rain-stre2eccb1022c.mp4`,
+        src: `ready-to-use/long-select/005810.mp4`,
         prompt: `Replace the background with a cinematic, rain-streaked windowpane at dusk. Feature softly out-of-focus city lights in moody cool teal and muted amber glowing through the wet glass. Add delicate condensation and trickling raindrops to the window surface, maintaining a shallow depth of field to enhance the deeply emotional, melancholic atmosphere without altering the subject's lighting or appearance.`
       },
       {
-        src: `ready-to-use/long-select/006386. Replace the background with a quiet, softly blurre40fabb12db.mp4`,
+        src: `ready-to-use/long-select/006386.mp4`,
         prompt: `Replace the background with a quiet, softly blurred European city street under an overcast sky. Include out-of-focus historic stone buildings in muted earth tones, a distant wrought-iron street lamp, and wet cobblestones subtly reflecting the ambient light. Ensure the new environment perfectly matches the soft, evenly diffused daylight on the subject.`
       }
     ]
@@ -112,15 +116,15 @@ const minuteLengthGroups = [
     title: "Style Transfer",
     items: [
       {
-        src: `ready-to-use/long-select/001657. Re-imagine the entire scene as an ancient fresco p0f677feae6.mp4`,
+        src: `ready-to-use/long-select/001657.mp4`,
         prompt: `Re-imagine the entire office scene as a warm antique wall fresco painted on aged plaster. Convert the man, desk, laptop, notebook, shelves, plants, and lamp into hand-painted forms with soft ochre tones, faded blues, simplified outlines, and visible brush texture. Add a worn gilded border, raised plaster grain, and subtle cracks across the image while preserving the original composition, gestures, object layout, and temporal motion.`
       },
       {
-        src: `ready-to-use/long-select/005858. Transform the entire scene into a vibrant Fauvist 0147d40c81.mp4`,
+        src: `ready-to-use/long-select/005858.mp4`,
         prompt: `Transform the entire scene into a vibrant Fauvist painting. Re-render the woman, her phone, and the background using wild, non-naturalistic colors like electric blues, vivid greens, and intense oranges. Replace all realistic textures with energetic, thick, painterly brushstrokes and bold, contrasting outlines. Simplify her face, clothing, and the glowing lamp into flat, expressive blocks of highly saturated color, abandoning realistic lighting to create a bold, emotionally charged artwork.`
       },
       {
-        src: `ready-to-use/long-select/006633. Transform the entire scene into a breathtaking Sci2e7ec2e016.mp4`,
+        src: `ready-to-use/long-select/006633.mp4`,
         prompt: `Transform the entire scene into a breathtaking Sci-Fi Art digital painting. Re-render the background as an out-of-focus futuristic cityscape with glowing holographic bokeh and sleek technological structures. Re-imagine the subject in a highly detailed, futuristic illustration style, giving her skin a flawless, subtly luminescent quality. Keep her exact features, pose, and emotional expression intact, while rendering her hair, clothing, and phone with advanced, sleek synthetic textures. Bathe the composition in atmospheric neon blues, cool cyans, and deep purples to reflect a highly advanced civilization.`
       }
     ]
@@ -138,19 +142,19 @@ const minuteLengthGroups = [
 
 const oneSourceMultipleEdits = [
   {
-    src: `ready-to-use/long-one-sample-more-edits/005500. Replace the background with a dimly lit, vintage s593892226e.mp4`,
+    src: `ready-to-use/long-one-sample-more-edits/005500.mp4`,
     prompt: `Replace the background with a dimly lit, vintage speakeasy lounge, leaving the subject and foreground elements entirely unchanged. The new environment should feature out-of-focus dark mahogany wood paneling, antique glass bottles, and softly glowing amber wall sconces. Maintain a shallow depth of field with rich, warm-toned bokeh that seamlessly complements the soft, directional lighting and classic tweed attire of the subject.`
   },
   {
-    src: `ready-to-use/long-one-sample-more-edits/005503. Replace the subject's textured grey blazer with a b8ea3a72ab.mp4`,
+    src: `ready-to-use/long-one-sample-more-edits/005503.mp4`,
     prompt: `Replace the subject's textured grey blazer with a plush, deep burgundy velvet smoking jacket. The new garment should feature smooth, black silk peak lapels that softly reflect the warm ambient light of the corridor. Ensure the rich velvet fabric maintains a tailored fit, draping naturally over his shoulders and back to provide a seamless, luxurious silhouette as he speaks, turns, and walks away.`
   },
   {
-    src: `ready-to-use/long-one-sample-more-edits/005792. Transform the background into a luxurious high-ris95a3e689b3.mp4`,
+    src: `ready-to-use/long-one-sample-more-edits/005792.mp4`,
     prompt: `Transform the background into a luxurious high-rise executive office. Feature sweeping floor-to-ceiling windows that reveal a gleaming, modern metropolis under a crisp blue daytime sky. Flank the windows with rich, dark walnut wood paneling to provide elegant contrast. Enhance the spatial depth by including a subtly out-of-focus, minimalist bookshelf adorned with abstract metallic sculptures, bathed in soft, diffused natural daylight that harmonizes seamlessly with the scene.`
   },
   {
-    src: `ready-to-use/long-one-sample-more-edits/005794. Remove the white flower arrangement and its green 28ff69cff3.mp4`,
+    src: `ready-to-use/long-one-sample-more-edits/005794.mp4`,
     prompt: `Remove the white flower arrangement and its green leaves from the bottom right corner of the scene, leaving a clean, empty desk surface in its place.`
   }
 ];
@@ -235,11 +239,11 @@ const shortVideoGroups = [
 
 const physicalAiExamples = [
   {
-    src: `ready-to-use/autodrive/000009. Transform this front-facing autonomous-driving vidd2f25f0656.mp4`,
+    src: `ready-to-use/autodrive/000009.mp4`,
     prompt: `Transform this front-facing autonomous-driving video into a light snowfall scene at early morning. Replace rain and mist with gently falling snow, pale blue-gray dawn light, thin snow accumulation along road edges, and softened tree or building silhouettes, while keeping all vehicles, road geometry, lane markings, signs, and motion unchanged.`
   },
   {
-    src: `ready-to-use/robotics/000017. Replace every visible human body part in this egocda2a76ec62.mp4`,
+    src: `ready-to-use/robotics/000017.mp4`,
     prompt: `Replace every visible human body part in this egocentric manipulation video with a sleek humanoid robot body. Convert all visible hands and forearms into detailed mechanical robot hands and arms, with articulated metal fingers, exposed joints, small cables, and polished dark-silver surfaces. If legs, torso, sleeves, or other body parts appear, render them as matching robotic limbs while preserving the original pose and movement. Keep all surrounding objects, tools, furniture, lighting, camera motion, shadows, and object interactions unchanged, and make the robotic limbs naturally maintain the original contacts, timing, perspective, and temporal consistency throughout the video.`
   }
 ];
@@ -263,7 +267,7 @@ function escapeHtml(value) {
 
 function videoElement(src, eager = false) {
   const url = assetPath(src);
-  const attr = eager ? `src="${url}"` : `data-src="${url}"`;
+  const attr = eager && !useBlobVideoLoader ? `src="${url}"` : `data-src="${url}"`;
   return `<video ${attr} ${eager ? "autoplay" : ""} muted loop playsinline controls preload="${eager ? "auto" : "none"}" aria-label="Video demo"></video>`;
 }
 
@@ -475,14 +479,53 @@ function setupPromptButtons() {
 
 function setupLazyVideos() {
   const cards = [...document.querySelectorAll("[data-compare-card]")];
-  const unloadTimers = new WeakMap();
 
   const loadCard = (card) => {
     card.querySelectorAll("video[data-src]").forEach((video) => {
-      if (!video.src) {
-        video.src = video.dataset.src;
+      if (video.src || video.dataset.loading === "true") return;
+
+      const sourceUrl = video.dataset.src;
+      if (!useBlobVideoLoader) {
+        video.src = sourceUrl;
         video.load();
+        return;
       }
+
+      video.dataset.loading = "true";
+      let blobUrlPromise = videoBlobUrls.get(sourceUrl);
+      if (!blobUrlPromise) {
+        blobUrlPromise = fetch(sourceUrl, { credentials: "same-origin" })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`Video request failed with HTTP ${response.status}`);
+            }
+            return response.blob();
+          })
+          .then((blob) => {
+            if (!blob.size) throw new Error("Video response was empty");
+            return URL.createObjectURL(blob);
+          })
+          .catch((error) => {
+            videoBlobUrls.delete(sourceUrl);
+            throw error;
+          });
+        videoBlobUrls.set(sourceUrl, blobUrlPromise);
+      }
+
+      blobUrlPromise
+        .then((blobUrl) => {
+          video.src = blobUrl;
+          video.load();
+          if (card.dataset.visible === "true") {
+            video.play().catch(() => {});
+          }
+        })
+        .catch(() => {
+          video.dispatchEvent(new Event("error"));
+        })
+        .finally(() => {
+          delete video.dataset.loading;
+        });
     });
   };
 
@@ -493,14 +536,6 @@ function setupLazyVideos() {
 
   const pauseCard = (card) => {
     card.querySelectorAll("video").forEach((video) => video.pause());
-  };
-
-  const unloadCard = (card) => {
-    card.querySelectorAll("video").forEach((video) => {
-      video.pause();
-      video.removeAttribute("src");
-      video.load();
-    });
   };
 
   if (!("IntersectionObserver" in window)) {
@@ -516,24 +551,12 @@ function setupLazyVideos() {
     entries.forEach((entry) => {
       const card = entry.target;
       if (entry.isIntersecting) {
-        const unloadTimer = unloadTimers.get(card);
-        if (unloadTimer) {
-          window.clearTimeout(unloadTimer);
-          unloadTimers.delete(card);
-        }
         card.dataset.visible = "true";
         loadCard(card);
         playCard(card);
       } else {
         pauseCard(card);
         card.dataset.visible = "false";
-        const unloadTimer = window.setTimeout(() => {
-          if (card.dataset.visible === "false") {
-            unloadCard(card);
-          }
-          unloadTimers.delete(card);
-        }, 2500);
-        unloadTimers.set(card, unloadTimer);
       }
     });
   }, { rootMargin: "240px 0px", threshold: 0.08 });
